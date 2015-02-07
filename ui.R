@@ -7,22 +7,24 @@
 
 library(shiny)
 
-shinyUI(pageWithSidebar(
-  
-  # Application title
-  headerPanel("Old Faithful Geyser Data"),
-  
-  # Sidebar with a slider input for number of bins
-  sidebarPanel(
-    sliderInput("bins",
-                "Number of bins:",
-                min = 1,
-                max = 50,
-                value = 30)
-  ),
-  
-  # Show a plot of the generated distribution
-  mainPanel(
-    plotOutput("distPlot")
-  )
+shinyUI(fluidPage(
+
+    
+    # Application title
+    headerPanel("Twitter Word Cloud"),
+    
+    # Sidebar with a slider and selection inputs
+    sidebarPanel(width = 5,
+                 textInput("selection", "Geben Sie einen Suchbegriff ein",""),
+                 actionButton("update", "Change"),
+                 hr(),
+                 sliderInput("max", 
+                             "Anzahl Tweets", 
+                             min = 1,  max = 355,  value = 20)
+    ),
+    
+    # Show Word Cloud
+    mainPanel(
+        plotOutput("plot")
+    )
 ))

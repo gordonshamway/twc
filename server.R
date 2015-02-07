@@ -1,23 +1,22 @@
-
-# This is the server logic for a Shiny web application.
-# You can find out more about building applications with Shiny here:
-# 
-# http://www.rstudio.com/shiny/
-#
-
 library(shiny)
 
-shinyServer(function(input, output) {
-   
-  output$distPlot <- renderPlot({
+shinyServer(function(input, output, session) {
+    # Define a reactive expression for the document term matrix
+    terms <- reactive({
+        # Change when the "update" button is pressed...
+        input$update
+        # ...but not for anything else
+        isolate({
+            withProgress(session, {
+                setProgress(message = "Processing corpus...")
+                search_twitter(input$selection, input$max)
+            })
+        })
+    })
     
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2] 
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+#    # Make the wordcloud drawing predictable during a session
+#    wordcloud_rep <- repeatable(wordcloud)
     
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    
-  })
-  
-})
+    output$plot <- comparison.cloud(tdm, colors = brewer.pal(nemo, "Dark2"),
+                                    scale = c(3,.5), random.order = FALSE, title.size = 1.5)
+    })
