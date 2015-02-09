@@ -15,7 +15,7 @@ shinyUI(
     sidebarLayout(
         sidebarPanel(width = 4,
                      textInput("selection", "Geben Sie einen Suchbegriff ein","Begriff"),
-                     submitButton("suchen"),
+                     actionButton("submit","suchen"),
                      hr(),
                      sliderInput("max", "Anzahl Tweets", min = 1,  max = 50,  value = 5)
                 ),
