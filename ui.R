@@ -6,23 +6,21 @@
 #
 
 library(shiny)
-
-shinyUI(fluidPage(
-
-    
+shinyUI(
+    fluidPage(
     # Application title
-    headerPanel("Twitter Word Cloud"),
+    titlePanel("Twitter Word Cloud"),
     
     # Sidebar with a slider and selection inputs
-    sidebarPanel(width = 5,
-                 textInput("selection", "Geben Sie einen Suchbegriff ein","Begriff"),
-                 actionButton("update", "Change"),
-                 hr(),
-                 sliderInput("max", "Anzahl Tweets", min = 1,  max = 355,  value = 10)
-    ),
-    
-    # Show Word Cloud
-    mainPanel(
-        plotOutput("plot")
+    sidebarLayout(
+        sidebarPanel(width = 4,
+                     textInput("selection", "Geben Sie einen Suchbegriff ein","Begriff"),
+                     submitButton("suchen"),
+                     hr(),
+                     sliderInput("max", "Anzahl Tweets", min = 1,  max = 50,  value = 5)
+                ),
+    #placeholder for the wordcloud
+    mainPanel(plotOutput("plot"))
     )
-))
+)
+)

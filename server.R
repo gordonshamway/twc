@@ -6,24 +6,19 @@ library(stringr)
 library(tm)
 library(wordcloud)
 
-shinyServer(function(input, output, session) {
-    # Define a reactive expression for the document term matrix
-    terms <- reactive({
-        # Change when the "update" button is pressed...
-        input$update
-        # ...but not for anything else
-        isolate({
-            withProgress(session, {
-                setProgress(message = "Processing corpus...")
-                search_twitter(input$selection, input$max)
-                #nur zum testen
-                #test <- search_twitter("Medion", 10)
-            })
-        })
-    })
+shinyServer(function(input, output) {
+
+    # fill the spot which we created in the ui.R
     output$plot <- renderPlot({
-        v <- terms()
-        comparison.cloud(v, colors = brewer.pal(nemo, "Dark2"),
-                                    scale = c(3,.5), random.order = FALSE, title.size = 1.5)
+        
+        #only when the button is pressed
+        input$submit
+        
+        #make the actual search (we defined it in global.R)
+        v <- search_twitter(input$selection, input$max)
+        
+        #create the wordcloud
+        comparison.cloud(v, colors = brewer.pal(ncol(v), "Dark2"),
+                        scale = c(4,0.5), random.order = FALSE, title.size = 1.5)
     })
 })
