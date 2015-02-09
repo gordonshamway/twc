@@ -15,12 +15,10 @@ shinyUI(fluidPage(
     
     # Sidebar with a slider and selection inputs
     sidebarPanel(width = 5,
-                 textInput("selection", "Geben Sie einen Suchbegriff ein",""),
+                 textInput("selection", "Geben Sie einen Suchbegriff ein","Begriff"),
                  actionButton("update", "Change"),
                  hr(),
-                 sliderInput("max", 
-                             "Anzahl Tweets", 
-                             min = 1,  max = 355,  value = 20)
+                 sliderInput("max", "Anzahl Tweets", min = 1,  max = 355,  value = 10)
     ),
     
     # Show Word Cloud

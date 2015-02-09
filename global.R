@@ -104,6 +104,18 @@ clean.text <- function(some_txt)
 #### Input max 355 tweets
 
 search_twitter <- function(a, b) {
+#     #authentication just do it initially
+#     library(devtools)
+#     install_github("twitteR", username="geoffjentry")
+#     library(twitteR)
+#     library(ROAuth)
+#     api_key <- "DHFmzyy7Vis9UO9cQ6tgQxVLI"
+#     api_secret <- "dMbR6yGSigc8oKnnNwWNhKpYytoDNVo3aO22Jf4FCWBWZNJ96n"
+#     access_token <- "68370055-zysA1i9vuvE0mP8l60miIsA8aAmhzQ2p5hW6ghkYB"
+#     access_token_secret <- "Ctqn1jx2MuVBSk1XwJIkSXOATd7aNoeOaCgeZrRP0lzAq"
+#     setup_twitter_oauth(api_key,api_secret,access_token,access_token_secret)
+    
+    ##search
     tweets = searchTwitter(a, b, lang="de")
     
     # get text 
@@ -149,4 +161,5 @@ search_twitter <- function(a, b) {
     tdm = TermDocumentMatrix(corpus)
     tdm = as.matrix(tdm)
     colnames(tdm) = labels
+    return(tdm)
 }

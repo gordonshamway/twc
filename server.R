@@ -1,4 +1,10 @@
 library(shiny)
+library(twitteR)
+library(RCurl)
+library(RJSONIO)
+library(stringr)
+library(tm)
+library(wordcloud)
 
 shinyServer(function(input, output, session) {
     # Define a reactive expression for the document term matrix
@@ -10,13 +16,14 @@ shinyServer(function(input, output, session) {
             withProgress(session, {
                 setProgress(message = "Processing corpus...")
                 search_twitter(input$selection, input$max)
+                #nur zum testen
+                #test <- search_twitter("Medion", 10)
             })
         })
     })
-    
-#    # Make the wordcloud drawing predictable during a session
-#    wordcloud_rep <- repeatable(wordcloud)
-    
-    output$plot <- comparison.cloud(tdm, colors = brewer.pal(nemo, "Dark2"),
+    output$plot <- renderPlot({
+        v <- terms()
+        comparison.cloud(v, colors = brewer.pal(nemo, "Dark2"),
                                     scale = c(3,.5), random.order = FALSE, title.size = 1.5)
     })
+})
