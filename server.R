@@ -18,6 +18,11 @@ shinyServer(function(input, output) {
         # hier kommt immer eine Nachfrage, die muss man 
     output$plot <- renderPlot({
         
+        #progressbar
+        withProgress(message = 'Creating plot', value = 0.1, {
+            Sys.sleep(input$max)
+        })
+        
         #only when the button is pressed
         input$submit
         
