@@ -3,6 +3,7 @@ http://thinktostart.com/twitter-authentification-with-r/
 http://davetang.org/muse/2013/04/06/using-the-r_twitter-package/
 
 #Authentificationsspeicherung
-http://stackoverflow.com/questions/26276588/where-to-store-twitter-credentials-in-shiny-application
+http://stackoverflow.com/questions/26276588/where-to-store-twitter-credentials-in-shiny-application # deprecated
+http://stackoverflow.com/questions/28221405/provide-response-to-interactive-prompt-in-batch-mode
 
 #Progressbar
