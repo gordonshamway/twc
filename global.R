@@ -63,7 +63,7 @@ clean.text <- function(some_txt)
 search_twitter <- function(a, b) {
     
     ##search
-    tweets = searchTwitter(a, b, lang="de")
+    tweets = searchTwitter(a, b, lang="en")
     
     # get text 
     tweet_txt = sapply(tweets, function(x) x$getText())
